@@ -1,0 +1,21 @@
+<div class="page-header section-padding d-flex justify-content-center align-items-center">
+    <h3 class="display-3 text-white fw-bolder position-relative">Book Details: {{book.title}}</h3>
+</div>
+
+<div class="book-details container-fluid rounded p-3 row justify-content-center">
+	<div class="col-lg-6">
+		<div class="details-box rounded-3 overflow-hidden">
+			<div class="overflow-hidden image-container"><img src="../../../assets/images/book.jpg" alt="{{book.title}}" class="img-fluid d-block w-100"></div>
+			<div class="book-info p-3">
+				<h5>{{book.title}}</h5>
+				<p class="mt-1 mb-2">{{book.author}}</p>
+				<small>{{book.description}}</small>
+			</div>
+			<hr>
+			<div class="book-stats px-3 pb-3 d-flex justify-content-between align-items-center">
+				<p><i class="fa-solid fa-layer-group me-1"></i>Genre: {{book.genre | genre}}</p>
+				<p><i class="fa-solid fa-clock me-1"></i>Published At: {{book.publishedDate | date}}</p>
+			</div>
+		</div>
+	</div>
+</div>

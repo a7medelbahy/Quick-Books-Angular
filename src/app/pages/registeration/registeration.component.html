@@ -1,0 +1,138 @@
+
+<div class="page-header section-padding d-flex justify-content-center align-items-center">
+	<h3 class="display-3 text-white fw-bolder position-relative">Join US</h3>
+  </div>
+  
+  <div class="regist section-padding">
+	<div class="container">
+		<div class="section-heading">
+			<h3>Join Our Family</h3>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+		</div>
+		<div class="row mt-5 justify-content-center align-items-center gy-4">
+			<div class="col-md-5">
+				<img src="../../../assets/images/regist.jpg" class="img-fluid w-100 d-block" alt="regist">
+			</div>
+			<div class="col-lg-7">
+				<form [formGroup]="registForm" (submit)="submit($event)">
+					<div class="mb-3">
+					  <label for="firstName" class="form-label">First Name</label>
+					  <input
+						formControlName="firstName"
+						type="text"
+						class="form-control"
+						id="firstName"
+						placeholder="Enter Your First Name"
+					  />
+					  @if (registForm.get('firstName')?.invalid && registForm.get('firstName')?.touched) {
+						@if (registForm.get('firstName')?.errors?.['required']) {
+							<div class="form-text text-danger">first name is required</div>
+						}
+						@if (registForm.get('firstName')?.errors?.['pattern']) {
+							<div class="form-text text-danger">first name must be between 3 to 50 characters</div>
+						}
+					}
+					</div>
+					<div class="mb-3">
+						<label for="lastName" class="form-label">Last Name</label>
+						<input
+						  formControlName="lastName"
+						  type="text"
+						  class="form-control"
+						  id="lastName"
+						  placeholder="Enter Your First Name"
+						/>
+						@if (registForm.get('lastName')?.invalid && registForm.get('lastName')?.touched) {
+						  @if (registForm.get('lastName')?.errors?.['required']) {
+							  <div class="form-text text-danger">last name is required</div>
+						  }
+						  @if (registForm.get('lastName')?.errors?.['pattern']) {
+							  <div class="form-text text-danger">last name must be between 3 to 50 characters</div>
+						  }
+					  }
+					  </div>
+					  <div class="mb-3">
+						<label for="username" class="form-label">User Name</label>
+						<input
+						  formControlName="username"
+						  type="text"
+						  class="form-control"
+						  id="username"
+						  placeholder="Enter Your First Name"
+						/>
+						@if (registForm.get('username')?.invalid && registForm.get('username')?.touched) {
+						  @if (registForm.get('username')?.errors?.['required']) {
+							  <div class="form-text text-danger">user name is required</div>
+						  }
+						  @if (registForm.get('username')?.errors?.['pattern']) {
+							  <div class="form-text text-danger">user name must be between 3 to 50 characters</div>
+						  }
+					  }
+					  </div>	
+					<div class="mb-3">
+					  <label for="email" class="form-label">Email</label>
+					  <input
+						formControlName="email"
+						type="email"
+						class="form-control"
+						id="email"
+						placeholder="Enter Email"
+					  />
+					  @if (registForm.get('email')?.invalid && registForm.get('email')?.touched) {
+						@if (registForm.get('email')?.errors?.['required']) {
+							<div class="form-text text-danger">Email is required</div>
+						}
+						@if (registForm.get('email')?.errors?.['email']) {
+							<div class="form-text text-danger">Enter valid email address</div>
+						}
+					}
+					</div>
+				
+					<div class="mb-3">
+						<label for="password" class="form-label">Password</label>
+						<input
+						  formControlName="password"
+						  type="password"
+						  class="form-control"
+						  id="password"
+						  placeholder="Enter Password"
+						/>
+						@if (registForm.get('password')?.invalid && registForm.get('password')?.touched) {
+							@if (registForm.get('password')?.errors?.['required']) {
+								<div class="form-text text-danger">Password is required</div>
+							}
+							@if (registForm.get('password')?.errors?.['minLength']) {
+								<div class="form-text text-danger">Password Should be more than 8 characters</div>
+							}
+						}
+					  </div>
+				  </form>
+			</div>
+		</div>
+		<div class="d-flex justify-content-center align-items-center gap-3">
+			<button class="button fs-5" (click)="submit($event)">Save</button>
+			<button class="button fs-5" (click)="confirmCancel(closeModal)">Cancel</button>
+		</div>
+	</div>
+  </div>
+
+  <ng-template #closeModal let-close="close" let-dismiss="dismiss">
+	<div class="modal-header">
+	  <h4 class="modal-title" id="modal-basic-title">Confirmation Message!</h4>
+	  <button
+		type="button"
+		class="btn-close outline-none"
+		aria-label="Close"
+		(click)="dismiss('Cross click')"
+	  ></button>
+	</div>
+	<div class="modal-body">
+	  <p>Are you sure you want to Cancel and leave this page?</p>
+	</div>
+	<div class="modal-footer">
+	  <button type="button" class="button" (click)="close('Save click')">
+		Leave
+	  </button>
+	  <button type="button" class="button" (click)="cancel()">Cancel</button>
+	</div>
+  </ng-template>

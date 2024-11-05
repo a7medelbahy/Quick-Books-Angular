@@ -1,0 +1,142 @@
+<div class="page-header section-padding d-flex justify-content-center align-items-center">
+    <h3 class="display-3 text-white fw-bolder position-relative">
+		@if (id && id !== 0) {
+			<ng-container >Edit Book: {{bookForm.get('title')?.value}}</ng-container>
+		}@else {
+			<ng-container >Add new book</ng-container>
+		}
+	</h3>
+</div>
+<div class="book-form container-fluid rounded p-3">
+	<div class="row d-flex align-items-center">
+		<div class="col-lg-6">
+			<div class="rounded overflow-hidden d-flex justify-content-center">
+				<img class="img-fluid w-75" src="../../../assets/images/add-book.webp" alt="add new book" title="add new book">
+			</div>
+		</div>
+		<div class="col-lg-6">
+			<form [formGroup]="bookForm" (submit)="submitForm($event)">
+				<div class="d-flex flex-column gap-3">
+					<div class="inputGroup w-100">
+						<input
+						  type="text"
+						  id="title"
+						  placeholder="Enter Book Title"
+						  name="title"
+						  formControlName="title"
+						  autocomplete="off"
+						/>
+						<label for="title">Book Title</label>
+						@if (bookForm.get('title')?.invalid && bookForm.get('title')?.touched) {
+							@if (bookForm.get('title')?.errors?.['required']) {
+								<div class="form-text text-danger">Book title is required</div>
+							}
+							@if (bookForm.get('title')?.errors?.['pattern']) {
+								<div class="form-text text-danger">Book title must be between 3 to 50 characters</div>
+							}
+						}
+					</div>
+					<div class="book-description w-100">
+						<textarea
+						  id="description"
+						  placeholder="Enter Book description"
+						  name="description"
+						  formControlName="description"
+						></textarea>
+						<label for="description">Book description</label>
+						@if (bookForm.get('description')?.invalid && bookForm.get('description')?.touched) {
+							@if (bookForm.get('description')?.errors?.['required']) {
+								<div class="form-text text-danger">Book description is required</div>
+							}
+							@if (bookForm.get('description')?.errors?.['pattern']) {
+								<div class="form-text text-danger">Book description nust be between 3 to 200 characters</div>
+							}
+						}
+					</div>
+					<div class="inputGroup w-100">
+						<input
+						  type="text"
+						  id="author"
+						  placeholder="Enter Book author"
+						  name="author"
+						  formControlName="author"
+						  autocomplete="off"
+						/>
+						<label for="author">Book author Name</label>
+						@if (bookForm.get('author')?.invalid && bookForm.get('author')?.touched) {
+							@if (bookForm.get('author')?.errors?.['required']) {
+								<div class="form-text text-danger">Book author is required</div>
+							}
+							@if (bookForm.get('author')?.errors?.['pattern']) {
+								<div class="form-text text-danger">Book author name must be between 3 to 50 characters</div>
+							}
+						}
+					</div>
+					<div class="w-100 select-genre">
+						<label for="genre">Book genre</label>
+						<select
+						  id="genre"
+						  name="genre"
+						  class="form-select"
+						  formControlName="genre"
+						>
+						<option disabled selected>Genre</option>
+						<option [value]="genreEnum.Fiction">Fiction</option>
+						<option [value]="genreEnum.Historical">Historical</option>
+						<option [value]="genreEnum.Mystery">Mystery</option>
+						<option [value]="genreEnum.Narrative">Narrative</option>
+						<option [value]="genreEnum.Novel">Novel</option>
+						<option [value]="genreEnum.Romance">Romance</option>
+						<option [value]="genreEnum.Science">Science</option>
+						</select>
+						@if (bookForm.get('title')?.invalid && bookForm.get('title')?.touched) {
+							@if (bookForm.get('title')?.errors?.['required']) {
+								<div class="form-text text-danger">Book title is required</div>
+							}
+						}
+					</div>
+					<div class="inputGroup w-100">
+						<input
+						  type="date"
+						  id="publishedDate"
+						  placeholder="Enter Book publishedDate"
+						  name="publishedDate"
+						  formControlName="publishedDate"
+						/>
+						<label for="publishedDate">Book published date</label>
+						@if (bookForm.get('author')?.invalid && bookForm.get('author')?.touched) {
+							@if (bookForm.get('author')?.errors?.['required']) {
+								<div class="form-text text-danger">Book author is required</div>
+							}
+						}
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="d-flex justify-content-center align-items-center gap-3">
+		<button class="button fs-5" (click)="submitForm($event)">Save</button>
+		<button class="button fs-5" (click)="confirmCancel(closeModal)">Cancel</button>
+	  </div>
+</div>
+
+<ng-template #closeModal let-close="close" let-dismiss="dismiss">
+	<div class="modal-header">
+	  <h4 class="modal-title" id="modal-basic-title">Confirmation Message!</h4>
+	  <button
+		type="button"
+		class="btn-close outline-none"
+		aria-label="Close"
+		(click)="dismiss('Cross click')"
+	  ></button>
+	</div>
+	<div class="modal-body">
+	  <p>Are you sure you want to Cancel and leave this page?</p>
+	</div>
+	<div class="modal-footer">
+	  <button type="button" class="button" (click)="close('Save click')">
+		Leave
+	  </button>
+	  <button type="button" class="button" (click)="cancel()">Cancel</button>
+	</div>
+  </ng-template>

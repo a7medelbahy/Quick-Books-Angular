@@ -1,0 +1,85 @@
+.page-header {
+    background-image: url("../../../assets/images/cover.webp");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    position: relative;
+}
+.page-header::after {
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.page-header h3 {
+    z-index: 1;
+}
+
+.book-form{
+    box-shadow: 0px 0px 5px 2px #ccc;
+    background-image: url("../../../assets/images/background.jpg");
+    background-size: cover;
+    color: var(--main-black-color);
+}
+
+form .inputGroup, form .select-genre, form .book-description {
+	font-family: "Segoe UI", sans-serif;
+	margin: 1em 0 1em 0;
+	position: relative;
+  }
+  
+  form .inputGroup input, form select, form textarea {
+	font-size: 100%;
+	padding: 0.8em;
+	outline: none;
+	border: 2px solid rgb(200, 200, 200);
+	background-color: transparent;
+	border-radius: 20px;
+	width: 100%;
+  }
+  form textarea {
+	resize: none;
+	height: 100px;
+	width: 100%;
+  }
+  form .select-genre label, form .book-description label {
+	font-size: 90%;
+	position: absolute;
+	left: 25px;
+	top: -20px;
+	padding: 0.4em;
+	font-weight: bold;
+	background-color: white;
+	margin-left: 0.5em;
+	pointer-events: none;
+	transition: all 0.3s ease;
+	color: rgb(100, 100, 100);
+  }
+  form .inputGroup label {
+	font-size: 100%;
+	position: absolute;
+	left: 0;
+	padding: 0.8em;
+	margin-left: 0.5em;
+	pointer-events: none;
+	transition: all 0.3s ease;
+	color: rgb(100, 100, 100);
+  }
+  form .inputGroup :is(input:focus, input:empty) ~ label {
+	transform: translateY(-50%) scale(0.9);
+	margin: 0em;
+	margin-left: 1.3em;
+	padding: 0.4em;
+	background-color: white;
+	font-weight: bold;
+  }
+
+  form .inputGroup :is(input:focus) {
+	border-color: var(--primary-color);
+  }
+  .form-text {
+	font-weight: bold;
+  }

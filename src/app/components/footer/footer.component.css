@@ -1,0 +1,19 @@
+.footer {
+    background-image: url("../../../assets/images/footer.jpg");
+    background-size: cover;
+    background-color: var(--main-black-color);
+    position: relative;
+}
+.footer::after {
+    position: absolute;
+    content: '';
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.footer .container {
+    position: relative;
+    z-index: 1;
+}
